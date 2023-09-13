@@ -1,0 +1,219 @@
+
+#Ejercicio 1
+"""Escribir un programa que lea entre 10 a 20 números ingresados por el usuario, los almacene en una lista y los muestre ordenados
+de mayor o menor. 
+Debe recibir el ingreso de números hasta que el usuario ingrese 0. Pero el 0 no se debe mostrar en pantalla"""
+
+#Titulo
+print("Ejercicio 1: ")
+print()
+print("Escribir un programa que lea entre 10 a 20 números ingresados por el usuario, los almacene en una lista y los muestre ordenados de mayor o menor")
+print()
+#Definicion de la funcion llamada "leer_numeros esta funcion esta vacia"
+def leer_numeros():
+    #Creacion de una lista vacia llamda "numeros"
+    numeros = []
+    #Creacion de un ciclo "while" que se ejecuta mientras la longitud de lista "numeros" sea < a 20
+    while len(numeros) < 20:
+        #Dentro del ciclo se le pide al usuario que ingrese un numero que se almacena como entero en la variable"num"
+        num = int(input("Ingrese un numero (0 para terminar): "))
+        #Si el numero ingresado es = 0 se detiene el ciclo
+        if num == 0:
+            break
+        #Si el numero es <> de 0 se añade a la lista "numeros"    
+        numeros.append(num)
+        #Retorna la lista "numeros" una vez que se detiene el ciclo ingresando 0 o porque se ingresaron 20 numeros
+    return numeros
+#Esta es la funcion principal
+def main():
+    #Lee los numeros ingresados por el usuario
+  numeros = leer_numeros()
+  # Comprueba que la cantidad de numeros ingresados sea < que 10
+  if len(numeros) < 10:
+      #mesaje de error indicando que se deben ingresar por lo menos 10 numeros
+    print("No se ingresaron numeros, ingrese al menos 10: ")
+    #Si se ingresaron 10 numeros
+  else:
+        #Ordena los numeros de mayor a menor      
+        numeros.sort(reverse=True)
+        #Se imprime un mensaje indicando que se motraran en pantalla los numeros ingresados ordenados de mayor a menor
+        print("Los nueros ordenados de mayor a menor son: ")
+        #intera sobre cada numero de la lista numeros para realizar la imprsion de los numeros en pantalla
+        for num in numeros: print (num)
+#llama a la funcion principlal del ejercicio    
+if __name__ == "__main__":
+    main()
+print()
+    
+#ejercicio 2
+""""Escribir un programa que almacene palabras ingresadas por el usuario.
+Debe recibir ingreso de palabras hasta que el usuario ingrese tres asteriscos ***. 
+Luego de esto, las palabras se deben mostrar por pantalla una única vez. 
+Es decir que, si el usuario ingresó palabras repetidas, se deben mostrar solo una vez."""
+
+#Titulo
+print("Ejercicio 2: ")
+print()
+print("Escribir un programa que almacene palabras ingresadas por el usuario.")
+print()
+#Se crea un conjunto vacio llamdo'palabras'
+palabras =set()
+#Se crea ciclo "while"
+while True:
+    #Se le pide a usuario que ingrese una palabra
+    palabra = input("Ingrese una palabra o *** para salir: ")
+    #Se detiene el ciclo si usuario ingresa ***
+    if palabra == "***":
+        break
+    #Se agrega al conjunto palabras la palabra igreesada y se eliminan las palabras repetidas
+    palabras.add(palabra)
+#Se imprime un mensaje indicando que se mostraran las palabras
+print("Las palabras ingresadas son:")
+print()
+#Itera sobre cada palabra del conjunto palabras para listarlas de forma individual
+for palabra in palabras:
+    #Impreime cada palabra del conjunto palabras
+    print(palabra)
+    print()    
+    
+
+
+#Ejercio3
+""""¡Juguemos Scrabble!
+Construir un diccionario con los siguientes valores. Luego, el usuario ingresa una palabra por pantalla, y el programa devuelve el puntaje.
+Diccionario:
+__________________________________
+|1:| A, E, I, L, N, O, R, S, T, U|
+----------------------------------
+|2:| D, G                        |
+----------------------------------
+|3:| B, C, M, P                  |
+----------------------------------
+|4:| F, H, V, W, Y               |
+----------------------------------
+|5:| K                           |
+----------------------------------
+|8:| J X                         |
+----------------------------------
+|10:| Q, Z                       |
+----------------------------------
+"""
+print("Ejercicio 3: ")
+print()
+print("¡Juguemos Scrabble!")
+print()
+
+#Define la funcion 'Calcular_puntaje' que asigna un puntaje a cada palabra segun los puntos de las letras usadas
+def calcular_puntaje(palabra):
+    #Crea un diccionario donde se asignan un puntaje a cada letra
+    
+    valores = {
+        #Letras con un puntaje de 1
+        1: ['A', 'E', 'I', 'L', 'N', 'O', 'R', 'S', 'T', 'U'],
+        #Letras con un puntaje de 2
+        2: ['D', 'G'],
+        #Letras con un puntaje de 3
+        3: ['B', 'C', 'M', 'P'],
+        #Letras con un puntaje de 4
+        4: ['F', 'H', 'V', 'W', 'Y'],
+        #Letras con un puntaje de 5
+        5: ['K'],
+        #Letras con un puntaje de 8
+        8: ['J', 'X'],
+        #Letras con un puntaje de 10
+        10: ['Q', 'Z'],}
+    
+    #Crea un diccionario que mapea cada letra a su puntaje
+    diccionario_scrabble = {letra: puntaje for puntaje, letras in valores.items () for letra in letras}
+    #Calcula el puntaje de la palabra sumando los valores de las letras que la componen
+    puntaje = sum(diccionario_scrabble.get(letra.upper(), 0) for letra in palabra)
+    #Devuelve el puntaje de la palabra
+    return puntaje
+
+#Define la funcion principal
+def main ():
+    #Solicta al usuario que ingrese una palabra
+    palabra = input("Ingrese una palabra: ")
+    #Calcula el puntaje llamando a la funcion 'calcular_puntaje'
+    puntaje = calcular_puntaje(palabra)
+    #Imprime el puntaje de la palabra ingresada
+    print(f"El puntaje para '{palabra}' es: {puntaje}" )
+    
+#Llama a la funcion principal del ejercicio   
+if __name__ == "__main__":
+    main()
+print()     
+    
+ 
+    
+#Ejercicio 4
+"""Construir un programa que determine si dos palabras ingresadas por el usuario son anagramas."""
+
+print("Ejercicio 4: ")
+print()
+print("Construir un programa que determine si dos palabras ingresadas por el usuario son anagramas")
+print()
+#Define la funcion llamada anagrama
+def anagrama(palabra1, palabra2):
+    #Convuerte las palabras a minusculas y elimina los espacios
+    palabra1 = palabra1.lower().replace(" ", "")
+    palabra2 = palabra2.lower().replace(" ", "")
+    #Ordena las letras de las palabras ingresadas por el usurio determinando si son anagramas
+    return sorted(palabra1) == sorted(palabra2)
+
+#Define la funcion principal
+def main():
+    #Solicta al usuario que ingrese las 2 palabras
+    palabra1 = input("Ingrese Priemra palabra: ")
+    palabra2 = input("Ingrese Segunda palabra: ")
+    
+    #Si anagrama = true se imprime mesaje que las palabras son anagramas
+    if anagrama(palabra1, palabra2):
+        print(f"'{palabra1}' y '{palabra2}' son anagramas.")
+    #Si anagrama = false se imprime mensaje que las palabras no son anagramas    
+    else:
+        print(f"'{palabra1}' y '{palabra2}' no son anagramas.")
+        
+#Llama a la funcion principal del ejercicio        
+if __name__ == "__main__":
+    main()
+print()
+
+
+#Ejercio 5
+"""Construir un programa en donde el usuario ingrese número por pantalla y el programa devuelva la suma de cada número ingresado por el usuario.
+Si el usuario ingresa un carácter no numérico, debe mostrar mensaje de error y continuar solicitando números y sumando. 
+El programa finaliza cuando usuario presiona enter con espacio en blanco."""
+
+print("Ejercicio 5: ")
+print()
+print("Construir un programa en donde el usuario ingrese número por pantalla y el programa devuelva la suma de cada número")
+print()
+
+#Se define la funcion principal
+# Se define la función principal
+def main():
+    # Inicializamos la variable suma en 0 que irá acumulando el valor de la suma de los números ingresados por el usuario
+    suma = 0
+    
+    # Se inicia un ciclo que pedirá al usuario que ingrese un número
+    while True:
+        numero = input("Ingrese un numero (Presione enter para terminar): ")
+        # Si el usuario ingresa 'Enter' sin ningún valor, el ciclo se detiene
+        if numero == "":
+            break
+        
+        # Convierte el número ingresado por el usuario en un número real y sumarlo a la variable suma
+        try:
+            suma += float(numero)
+        # Si el usuario no ingresa un número válido, se imprime mensaje de error
+        except ValueError:
+            print("Eso no es un número válido, intente de nuevo.")
+    
+    # Imprime el valor de la suma de los números ingresados por el usuario y que se acumuló en la variable suma
+    print(f"La suma de los números ingresados es: {suma} .")
+            
+# Llama a la función principal del ejercicio
+if __name__ == "__main__":
+    main()         
+            
